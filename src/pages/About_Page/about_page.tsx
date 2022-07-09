@@ -1,18 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { PhotoModal } from 'ui/molecules/PhotoModal/PhotoModal';
 import { Layout } from 'ui/organisms/Layout/Layout'
 import './about.scss';
 
+
 export const AboutPage = () => {
+  
+  const photo1 = require('./resources/5.jpeg');
+  const photo2 = require('./resources/2.jpeg');
+  const photo3 = require('./resources/3.jpeg');
+  const photo4 = require('./resources/4.jpeg');
+  const photo5 = require('./resources/1.jpeg');
+
+  const [modal, setModal] = useState(false);
+  const [photo_src, setPhotoSrc] = useState('');
+  const setModalVisibility = (src:string): void => {
+    setModal(true);
+    setPhotoSrc(src);
+  };
   return (
     <Layout>
       <div className='about'>
         <div className='gallery'>
-          <img className='gallery__img' src={require('./resources/5.jpeg')} alt='Photo 1'/>
+          <img className='gallery__img' src={photo1} alt='Photo 1' onClick={()=>setModalVisibility(photo1)}/>
           <div className='gallery__photos'>
-            <img className='gallery__photos__img' src={require('./resources/2.jpeg')} alt='Photo 2'/>
-            <img className='gallery__photos__img' src={require('./resources/3.jpeg')} alt='Photo 3'/>
-            <img className='gallery__photos__img' src={require('./resources/4.jpeg')} alt='Photo 4'/>
-            <img className='gallery__photos__img' src={require('./resources/1.jpeg')} alt='Photo 5'/>
+            <img className='gallery__photos__img' src={photo2} alt='Photo 2' onClick={()=>setModalVisibility(photo2)}/>
+            <img className='gallery__photos__img' src={photo3} alt='Photo 3' onClick={()=>setModalVisibility(photo3)}/>
+            <img className='gallery__photos__img' src={photo4} alt='Photo 4' onClick={()=>setModalVisibility(photo4)}/>
+            <img className='gallery__photos__img' src={photo5} alt='Photo 5' onClick={()=>setModalVisibility(photo5)}/>
           </div>
         </div>
         <div className='about-me'>
@@ -47,6 +62,9 @@ export const AboutPage = () => {
             Linkedin at <span className="bold color-black">Andres Iporre</span>
           </div>
         </div>
+        {modal && (
+          <PhotoModal photo={photo_src} setVisibility={setModal}/> 
+          )}
       </div>
     </Layout>
   )
