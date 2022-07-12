@@ -6,6 +6,7 @@ import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 import {AboutPage} from './pages/About_Page/about_page';
 import {ContactPage} from './pages/Contact_Page/contact_page';
 import { BlogPage } from 'pages/Blog_Page/blog_page';
+import { BlogPostPage } from 'pages/BlogPost_Page/blog_post_page';
 
 const container = document.getElementById('root')
 const root = ReactDom.createRoot(container!);
@@ -14,7 +15,8 @@ root.render(
     <Routes>
       <Route path="/about" element={<AboutPage/>}></Route>
       <Route path="/contact" element={<ContactPage/>}></Route>
-      <Route path="/blog" element={<BlogPage/>}></Route> 
+      <Route path="/blog"  element={<BlogPage/>}></Route>
+      <Route path="/blog/:id" element={<BlogPostPage/>}></Route>  
       <Route path='/' element={<Navigate replace to="/about" />}></Route>
     </Routes>
   </BrowserRouter>

@@ -12,16 +12,16 @@ interface Props{
 export const BigThumbnail: React.FC<Props> = ({data}) => {
     const navigate = useNavigate();
     const goToPostPage = () => {
-        //navigate(`/blog/${data.id}`);
+        navigate(`/blog/${data.id}`);
     }
     return (
         <div className='big-thumbnail' onClick={()=> goToPostPage()}>
+            <div className='big-thumbnail__title'>{data.title}</div>
             <img 
                 src={data?.converUrl? data.converUrl: ''} 
                 className='big-thumbnail__cover-container'
                 alt='Blog Post Photo'
                 />
-            <div className='big-thumbnail__title'>{data.title}</div>
         </div>
     )
 }
